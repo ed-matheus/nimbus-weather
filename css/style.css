@@ -1,0 +1,131 @@
+/* Importando as fontes Montserrat e Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Padronizando Configurações de Estilo */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  background-color: #334155;
+  /* background-image: url("/img/animals.png"); */
+}
+
+h1, h2, h3, h4 {
+  font-family: "Montserrat", sans-serif;
+}
+
+p, span {
+  font-family: "Poppins", sans-serif;
+}
+
+/* Container Principal */
+main {
+  border-radius: 30px;
+  /* Efeito Glass (Vidro) */
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 300px;
+  min-height: 400px;
+  padding: 20px;
+}
+
+/* Título/nome do App */
+main h1 {
+  font-weight: 600;
+  font-size: 1.6rem;
+  margin-bottom: 60px;
+}
+
+/* Informações da Cidade Localizada */
+.temperature-container {
+  border: 8px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+
+  width: 180px;
+  height: 180px;
+  border-radius: 100%;
+}
+
+.temperature {
+  font-weight: 600;
+  font-size: 5rem;
+  font-family: "Montserrat", sans-serif;
+}
+
+.city-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.city-info .weather-container {
+  display: flex;
+  gap: 12px;
+}
+
+/* Clima e Cidade */
+.weather-container .weather-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* Tipo de Clima */
+.weather {
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.city {
+  font-weight: 300;
+}
+
+/* Ícone de Localização */
+.location-icon {
+  border: 3px solid #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+
+  width: 18px;
+  height: 18px;
+  border-radius: 100%;
+}
+
+.location-icon i {
+  font-size: 1.5rem;
+}
+
+/* Informações Extras de Clima */
+.extra-info {
+  /* border: 1px solid #00ff00; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
