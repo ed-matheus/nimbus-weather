@@ -73,7 +73,7 @@ const screenUpdate = (data) => {
   const apiIconCode = data.weather[0].icon
   // console.log(apiIconCode)
   const weatherIcon = document.querySelector(".weather-icon")
-  weatherIcon.setAttribute('src', `icons/${apiIconCode}.png`)
+  weatherIcon.setAttribute('src', `assets/icons/${apiIconCode}.png`)
 
   // Clima e Cidade
   const weatherType = document.querySelector(".weather")
