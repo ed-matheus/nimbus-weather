@@ -45,16 +45,50 @@ const startApp = async (lat, lon) => {
 
         const data = await response.json()
         console.log(data)
+        screenUpdate(data)
 
       } catch (error) {
         console.error('Erro ao obter os dados: ', error)
       }
-    }
 
-    fetchApiData()
+    }
+    
+    return fetchApiData()
   } catch (error) {
     console.error("Erro ao obter localização:", error.message)
   }
 }
 
 startApp()
+
+// Mapa de "tradução" dos códigos de ícones da API OpenWeather
+
+// Inserindo dados atualizados no HTML
+const screenUpdate = (data) => {
+  // Temperatura em graus Celsius
+  const temperature = document.querySelector(".temperature")
+  temperature.innerHTML = `${data.main.temp.toFixed(0)}°c`
+
+  // Ícone do clima
+  const apiIconCode = data.weather[0].icon
+  // console.log(apiIconCode)
+  const weatherIcon = document.querySelector(".weather-icon")
+  weatherIcon.setAttribute('src', `icons/${apiIconCode}.png`)
+
+  // Clima e Cidade
+  const weatherType = document.querySelector(".weather")
+  weatherType.innerHTML = data.weather[0].description
+
+  const location = document.querySelector(".city")
+  location.innerHTML = data.name
+
+  // Vento, umidade e sensação térmica 
+  const windSpeed = document.querySelector(".wind")
+  windSpeed.innerHTML = `Wind: ${data.wind.speed} km/h`
+
+  const humidity = document.querySelector(".humidity")
+  humidity.innerHTML = `Humidity: ${data.main.humidity}°`
+
+  const feelsLike = document.querySelector(".feels-like")
+  feelsLike.innerHTML = `Feels like: ${data.main.feels_like.toFixed(0)}°`
+}
