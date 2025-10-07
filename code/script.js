@@ -30,7 +30,7 @@ const startApp = async (lat, lon) => {
     const lon = position.coords.longitude.toFixed(2)
 
     // console.log(`Coordenadas obtidas: ${lat}, ${lon}`);
-    const apiUrl = `./netlify/functions/getWeather?lat=${lat}$lon=${lon}`
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=pt_br`
 
     const fetchApiData = async () => {
       try {
