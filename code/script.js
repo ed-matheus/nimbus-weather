@@ -1,6 +1,3 @@
-// Chave da API (API Key)
-const apiKey = "be626c6ae8668345ab93f7ca2157d5f5"
-
 // Obtendo a localização do usuário, de acordo com permissão
 const getCoords = () => {
   return new Promise(function (resolve, reject) {
@@ -33,7 +30,7 @@ const startApp = async (lat, lon) => {
     const lon = position.coords.longitude.toFixed(2)
 
     // console.log(`Coordenadas obtidas: ${lat}, ${lon}`);
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=pt_br`
+    const apiUrl = `/.netlify/functions/getWeather?lat=${lat}$lon=${lon}`
 
     const fetchApiData = async () => {
       try {
