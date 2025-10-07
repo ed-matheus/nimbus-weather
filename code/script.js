@@ -25,14 +25,14 @@ const getCoords = () => {
 
 const startApp = async (lat, lon) => {
   try {
-    console.log("Pedindo permissão de localização...")
+    // console.log("Pedindo permissão de localização...")
 
     const position = await getCoords();
 
     const lat = position.coords.latitude.toFixed(2)
     const lon = position.coords.longitude.toFixed(2)
 
-    console.log(`Coordenadas obtidas: ${lat}, ${lon}`);
+    // console.log(`Coordenadas obtidas: ${lat}, ${lon}`);
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=pt_br`
 
     const fetchApiData = async () => {
@@ -84,11 +84,11 @@ const screenUpdate = (data) => {
 
   // Vento, umidade e sensação térmica 
   const windSpeed = document.querySelector(".wind")
-  windSpeed.innerHTML = `Wind: ${data.wind.speed} km/h`
+  windSpeed.innerHTML = `Vento: ${data.wind.speed} km/h`
 
   const humidity = document.querySelector(".humidity")
-  humidity.innerHTML = `Humidity: ${data.main.humidity}°`
+  humidity.innerHTML = `Umidade: ${data.main.humidity}%`
 
   const feelsLike = document.querySelector(".feels-like")
-  feelsLike.innerHTML = `Feels like: ${data.main.feels_like.toFixed(0)}°`
+  feelsLike.innerHTML = `Real feel: ${data.main.feels_like.toFixed(0)}°c`
 }
