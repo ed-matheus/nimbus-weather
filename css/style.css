@@ -117,11 +117,15 @@ main h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 12px;
+  padding: 10px;
 
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   border-radius: 100%;
+}
+
+.location-icon i {
+  font-size: 1.2rem;
 }
 
 /* Informações Extras de Clima */
@@ -183,4 +187,35 @@ main h1 {
 
 .search:hover {
   background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Classes para o background dinâmico */
+body.sunny-day {
+  background: url('../assets/img/sunny-day.jpg') no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+body.clear-night {
+  background: url('../assets/img/night.jpg') no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+body.few-clouds-day {
+  background: url('../assets/img/few-clouds-d.jpg') no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+body.cloudy-day {
+  background: url('../assets/img/cloudy-day.jpg') no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+body.cloudy-night {
+  background: url('../assets/img/cloudy-night.png') no-repeat;
+  background-size: cover;
+  background-position: center center;
 }

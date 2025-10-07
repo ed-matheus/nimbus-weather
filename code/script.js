@@ -58,10 +58,30 @@ const startApp = async (lat, lon) => {
 
 startApp()
 
-// Mapa de "tradução" dos códigos de ícones da API OpenWeather
+const listaBackground = {
+  "01d": "sunny-day",
+  "01n": "clear-night",
+  "02d": "few-clouds-day",
+  "02n": "few-clouds-night",
+  "03d": "scattered-day",
+  "03n": "scattered-night",
+  "04d": "cloudy-day",
+  "04n": "cloudy-night",
+  "09d": "drizzle-day",
+  "09n": "drizzle-night",
+  "10d": "rainy-day",
+  "10n": "rainy-night",
+  "11d": "storm-day",
+  "11n": "storm-night",
+  "13d": "snow-day",
+  "13n": "snow-night",
+  "50d": "mist-day",
+  "50n": "mist-night",
+}
 
 // Inserindo dados atualizados no HTML
 const screenUpdate = (data) => {
+
   // Temperatura em graus Celsius
   const temperature = document.querySelector(".temperature")
   temperature.innerHTML = `${data.main.temp.toFixed(0)}°c`
@@ -88,4 +108,10 @@ const screenUpdate = (data) => {
 
   const feelsLike = document.querySelector(".feels-like")
   feelsLike.innerHTML = `Real feel: ${data.main.feels_like.toFixed(0)}°c`
+
+  // Dinâmica para o background do app
+  const bodyTag = document.querySelector("body")
+  const backgroundClass = listaBackground[apiIconCode]
+  bodyTag.className = backgroundClass
+
 }
