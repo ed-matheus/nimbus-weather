@@ -4,6 +4,8 @@
 
 Ele exibe informações meteorológicas em tempo real, como temperatura, sensação térmica, velocidade do vento e umidade, com design moderno e responsivo.
 
+PS: A API Key (chave da API) está exposta, vou manter assim pois é uma chave gerada gratuitamente e este é um projeto de estudo e para incluir no meu portfólio. Em projetos de apps e sistemas reais, haveria todo um processo de 'esconder' a chave da API para evitar problemas de vazamento!
+
 ---
 
 ### 🚀 Tecnologias Utilizadas

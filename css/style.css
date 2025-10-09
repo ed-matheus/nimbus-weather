@@ -219,3 +219,9 @@ body.cloudy-night {
   background-size: cover;
   background-position: center center;
 }
+
+body.rainy-night {
+  background: url('../assets/img/rainy-night.jpg') no-repeat;
+  background-size: cover;
+  background-position: center center;
+}

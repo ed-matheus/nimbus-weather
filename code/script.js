@@ -1,3 +1,6 @@
+// minha chave da API
+const apiKey = "d2bccab77ab3788941f28080348cb4b8";
+
 // Obtendo a localização do usuário, de acordo com permissão
 const getCoords = () => {
   return new Promise(function (resolve, reject) {
