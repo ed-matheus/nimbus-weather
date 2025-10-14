@@ -15,7 +15,6 @@ body {
   align-items: center;
   font-size: 16px;
   background-color: #334155;
-  /* background-image: url("/img/animals.png"); */
   font-family: "Poppins", sans-serif;
 }
 
@@ -30,6 +29,17 @@ i {
 a {
   color: #fff;
   text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0 20px;
+}
+
+button {
+  background: none;
+  border: none;
+  color: #fff;
 }
 
 /* Container Principal */
@@ -147,7 +157,6 @@ main h1 {
   background-color: rgba(255, 255, 255, 0.2);
   margin-top: 20px;
   width: 100%;
-  height: 100%;
   padding: 30px 20px;
   border-radius: 30px;
 
@@ -187,6 +196,55 @@ main h1 {
 
 .search:hover {
   background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Modal do Forecast (Previsão do Tempo) */
+.modal-forecast {
+  position: fixed;
+  width: 100%;
+  background-color: #334155;
+  padding: 15px;
+  border-radius: 12px;
+  z-index: 1;
+  opacity: 0;
+}
+
+.forecast-content {
+  width: 100%;
+}
+
+.forecast-content button {
+  width: 100%;
+  text-align: end;
+}
+
+.forecast-content h3 {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.is-visible {
+  opacity: 1;
+}
+
+.forecast-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-size: 0.8rem;
+  text-transform: capitalize;
+}
+
+.forecast-list li {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.forecast-list img {
+  width: 22px;
+  height: 22px;
 }
 
 /* Classes para o background dinâmico */

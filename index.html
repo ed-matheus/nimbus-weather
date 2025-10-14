@@ -4,18 +4,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Arquivos JS -->
-  <script src="code/script.js" defer></script>
+  <title>Nimbus - Your Weather</title>
 
   <!-- Arquivo CSS -->
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- Arquivos JS -->
+  <script src="code/script.js" defer></script>
 
   <!-- Icons (Fontawesome) -->
   <script src="https://kit.fontawesome.com/89d4f401d9.js" crossorigin="anonymous" defer></script>
 
   <link rel="icon" href="assets/icons/favicon.png">
-  <title>Nimbus - Your Weather</title>
 </head>
 
 <body>
@@ -58,10 +58,20 @@
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
 
-      <a href="forecast.html" class="forecast">
+      <button href="forecast.html" class="forecast" onclick="forecastModal()">
         <i class="fa-solid fa-list-ul"></i>
         Previsão
-      </a>
+      </button>
+    </div>
+
+    <div class="modal-forecast">
+      <div class="forecast-content">
+        <button onclick="forecastModal()">
+          <i class="fa-solid fa-circle-xmark"></i>
+        </button>
+        <h3>Previsão do Tempo</h3>
+        <ul class="forecast-list"></ul>
+      </div>
     </div>
   </main>
 </body>

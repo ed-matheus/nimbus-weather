@@ -27,6 +27,9 @@ const startApp = async (lat, lon) => {
   try {
     // console.log("Pedindo permissão de localização...")
 
+    // Espera explicitamente que todas as fontes do CSS estejam carregadas.
+    await document.fonts.ready;
+
     const position = await getCoords();
 
     const lat = position.coords.latitude.toFixed(2)
@@ -59,8 +62,6 @@ const startApp = async (lat, lon) => {
   }
 }
 
-startApp()
-
 const listaBackground = {
   "01d": "sunny-day",
   "01n": "clear-night",
@@ -82,7 +83,7 @@ const listaBackground = {
   "50n": "mist-night",
 }
 
-// Inserindo dados atualizados no HTML
+// Manipulando os elementos para inserção de dados dinâmicos
 const screenUpdate = (data) => {
 
   // Temperatura em graus Celsius
@@ -117,4 +118,94 @@ const screenUpdate = (data) => {
   const backgroundClass = listaBackground[apiIconCode]
   bodyTag.className = backgroundClass
 
+}
+
+// Função para abrir/fechar o modal de previsão do tempo
+const forecastModal = () => {
+  const modal = document.querySelector(".modal-forecast")
+  modal.classList.toggle('is-visible')
+}
+
+// Buscando dados de previsão da API
+const fetchForecastData = async (lat, lon) => {
+  try {
+    // Espera explicitamente que todas as fontes do CSS estejam carregadas.
+    await document.fonts.ready;
+
+    const position = await getCoords();
+
+    const lat = position.coords.latitude.toFixed(2)
+    const lon = position.coords.longitude.toFixed(2)
+
+    // console.log(`Coordenadas obtidas: ${lat}, ${lon}`);
+    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=pt_br`
+
+    const fetchApiData = async () => {
+      try {
+        const response = await fetch(apiUrl)
+
+        if (!response.ok) {
+          throw new Error(`Erro HTTP! status: ${response.status}`)
+        }
+
+        const data = await response.json()
+        
+        const forecastList = data.list
+        
+        const dailyForecast = forecastList.filter(forecastItem => {
+          return forecastItem.dt_txt.includes("12:00:00")
+        })
+
+        // console.log(dailyForecast)
+
+        modalUpdate(dailyForecast)
+
+      } catch (error) {
+        console.error('Erro ao obter os dados: ', error)
+      }
+
+    }
+    
+    return fetchApiData()
+  } catch (error) {
+    console.error("Erro ao obter localização:", error.message)
+  }
+}
+
+window.onload = function () {
+  startApp()
+  fetchForecastData()
+}
+
+
+const modalUpdate = (dailyForecast) => {
+  const list = document.querySelector('.forecast-list')
+  
+  const dataFormatter = (dailyForecast) => {
+    const date = new Date(dailyForecast)
+    const formatter = new Intl.DateTimeFormat('pt-BR', { weekday: 'short' })
+
+    return formatter.format(date)
+  }
+  
+  dailyForecast.forEach((i) => {
+    console.log(i)
+
+    const weekDay = dataFormatter(i.dt_txt)
+    // const humidity = i.main.humidity
+    const weather = i.weather[0].icon
+    const weatherDesc = i.weather[0].description
+    const temp = i.main.temp
+
+    // Criando a tag <li></li>
+    const li = document.createElement('li')
+
+    // Criando a tag <img> para o ícone do clima
+    const iconTag = document.createElement('img')
+    iconTag.setAttribute('src', `assets/icons/${weather}.png`)
+
+    li.innerHTML = `${weekDay} - ${temp.toFixed()}° ${weatherDesc}`
+    li.appendChild(iconTag)
+    list.appendChild(li)
+  })
 }
