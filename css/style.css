@@ -202,7 +202,7 @@ main h1 {
 .modal-forecast {
   position: fixed;
   width: 100%;
-  background-color: #334155;
+  background-color: rgb(51, 65, 85, 0.98);
   padding: 15px;
   border-radius: 12px;
   z-index: 1;
