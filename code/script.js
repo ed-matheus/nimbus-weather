@@ -224,7 +224,7 @@ const searchWeather = () => {
 
 const coordsByCityName = async (userSearch) => {
   try {
-    const apiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${userSearch}&limit=1&appid=${apiKey}`
+    const apiUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${userSearch}&limit=1&appid=${apiKey}`
     // console.log('API:'+ apiUrl)
 
     const fetchApiData = async () => {
