@@ -198,27 +198,29 @@ main h1 {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Modal do Forecast (Previsão do Tempo) */
-.modal-forecast {
+/* Estilo dos Modais (Previsão e Pesquisa de Clima)*/
+.modal-forecast, .modal-search {
   position: fixed;
   width: 100%;
   background-color: rgb(51, 65, 85, 0.98);
-  padding: 15px;
+  padding: 18px;
   border-radius: 12px;
   z-index: 1;
   opacity: 0;
 }
 
-.forecast-content {
+/* Botão de fechar modal */
+.modal-forecast button, .modal-search button {
+  display: block;
+  margin-left: auto;
+}
+
+.modal-content {
+  /* border: 1px solid green; */
   width: 100%;
 }
 
-.forecast-content button {
-  width: 100%;
-  text-align: end;
-}
-
-.forecast-content h3 {
+.modal-content h3 {
   text-align: center;
   margin-bottom: 32px;
 }
@@ -245,6 +247,36 @@ main h1 {
 .forecast-list img {
   width: 22px;
   height: 22px;
+}
+
+.search-form {
+  /* border: 1px solid yellow; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 10px;
+}
+.search-form input {
+  width: 250px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.search-form button {
+  background-color: #5c7394;
+  padding: 8px 16px;
+  border-radius: 5px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.search-form button:hover {
+  background-color: #5c7394bd;
+  padding: 8px 16px;
+  border-radius: 5px;
+  margin: 0;
 }
 
 /* Classes para o background dinâmico */

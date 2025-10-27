@@ -3,37 +3,37 @@ const apiKey = "d2bccab77ab3788941f28080348cb4b8";
 
 // Obtendo a localização do usuário, de acordo com permissão
 const getCoords = () => {
-  return new Promise(function (resolve, reject) {
-    if (!navigator.geolocation) {
-      reject(new Error("Geolocalização não é suportada neste navegador."))
-      return;
-    }
-
+  if ("geolocation" in navigator) {
+    // Solicita a posição atual do usuário
     navigator.geolocation.getCurrentPosition(
+      // Função de sucesso (chamada se a localização for obtida)
       (position) => {
-        lat = position.coords.latitude.toFixed(2)
-        lon = position.coords.longitude.toFixed(2)
-        resolve(position)
-      },
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
 
+        // console.log(`Latitude: ${lat}`);
+        // console.log(`Longitude: ${lon}`);
+
+        startApp(lat, lon)
+        fetchForecastData(lat, lon)
+      },
+      // Função de erro (chamada se houver um problema)
       (error) => {
-        reject(error)
+        console.error("Erro ao obter a localização:", error);
       }
-    )
-  })
+    );
+  } else {
+    // Caso o navegador não suporte a geolocalização
+    console.error("Geolocalização não é suportada por este navegador.");
+  }
 }
 
-const startApp = async (lat, lon) => {
+const startApp = async (lat, lon, newCityName) => {
   try {
     // console.log("Pedindo permissão de localização...")
 
     // Espera explicitamente que todas as fontes do CSS estejam carregadas.
     await document.fonts.ready;
-
-    const position = await getCoords();
-
-    const lat = position.coords.latitude.toFixed(2)
-    const lon = position.coords.longitude.toFixed(2)
 
     // console.log(`Coordenadas obtidas: ${lat}, ${lon}`);
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=pt_br`
@@ -47,7 +47,13 @@ const startApp = async (lat, lon) => {
         }
 
         const data = await response.json()
-        console.log(data)
+
+        // Se for passado um nome de cidade novo
+        if (newCityName) {
+          data.name = newCityName
+        }
+
+        // console.log(data)
         screenUpdate(data)
 
       } catch (error) {
@@ -129,15 +135,12 @@ const forecastModal = () => {
 // Buscando dados de previsão da API
 const fetchForecastData = async (lat, lon) => {
   try {
-    // Espera explicitamente que todas as fontes do CSS estejam carregadas.
-    await document.fonts.ready;
+    // const position = await getCoords();
 
-    const position = await getCoords();
+    // const lat = position.coords.latitude.toFixed(2)
+    // const lon = position.coords.longitude.toFixed(2)
 
-    const lat = position.coords.latitude.toFixed(2)
-    const lon = position.coords.longitude.toFixed(2)
-
-    // console.log(`Coordenadas obtidas: ${lat}, ${lon}`);
+    console.log(`Coordenadas obtidas: ${lat}, ${lon}`);
     const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=pt_br`
 
     const fetchApiData = async () => {
@@ -172,12 +175,7 @@ const fetchForecastData = async (lat, lon) => {
   }
 }
 
-window.onload = function () {
-  startApp()
-  fetchForecastData()
-}
-
-
+// Modal da Previsão do Tempo
 const modalUpdate = (dailyForecast) => {
   const list = document.querySelector('.forecast-list')
   
@@ -189,7 +187,7 @@ const modalUpdate = (dailyForecast) => {
   }
   
   dailyForecast.forEach((i) => {
-    console.log(i)
+    // console.log(i)
 
     const weekDay = dataFormatter(i.dt_txt)
     // const humidity = i.main.humidity
@@ -208,4 +206,56 @@ const modalUpdate = (dailyForecast) => {
     li.appendChild(iconTag)
     list.appendChild(li)
   })
+}
+
+// Função para abrir o modal "Weather"
+const searchModal = () => {
+  const modal = document.querySelector(".modal-search")
+  modal.classList.toggle('is-visible')
+}
+
+// Função para buscar dados da cidade inserida no modal de pesquisa
+const searchWeather = () => {
+  const userSearch = document.querySelector('input').value
+  console.log(userSearch)
+
+  coordsByCityName(userSearch)
+}
+
+const coordsByCityName = async (userSearch) => {
+  try {
+    const apiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${userSearch}&limit=1&appid=${apiKey}`
+    // console.log('API:'+ apiUrl)
+
+    const fetchApiData = async () => {
+      try {
+        const response = await fetch(apiUrl)
+
+        if (!response.ok) {
+          throw new Error(`Erro HTTP! status: ${response.status}`)
+        }
+
+        const data = await response.json()
+        const lat = data[0].lat
+        const lon = data[0].lon
+        const newCityName = data[0].name
+
+        // console.log(cityName)
+
+        startApp(lat, lon, newCityName)
+
+      } catch (error) {
+        console.error('Erro ao obter os dados: ', error)
+      }
+    }
+
+    return fetchApiData()
+  } catch (error) {
+    console.error("Erro ao obter localização:", error.message)
+  }
+}
+
+// Chamando as funções principais
+window.onload = function () {
+  getCoords()
 }

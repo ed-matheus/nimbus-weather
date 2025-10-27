@@ -54,7 +54,7 @@
         Home
       </a>
 
-      <button type="button" class="search" onclick="fetchApiData()">
+      <button type="button" class="search" onclick="searchModal()">
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
 
@@ -64,13 +64,30 @@
       </button>
     </div>
 
+    <!-- Modal de Previsão do Tempo -->
     <div class="modal-forecast">
-      <div class="forecast-content">
-        <button onclick="forecastModal()">
-          <i class="fa-solid fa-circle-xmark"></i>
-        </button>
+      <button onclick="forecastModal()">
+        <i class="fa-solid fa-circle-xmark"></i>
+      </button>
+
+      <div class="modal-content">
         <h3>Previsão do Tempo</h3>
         <ul class="forecast-list"></ul>
+      </div>
+    </div>
+
+    <!-- Modal de Pesquisa -->
+    <div class="modal-search">
+      <button onclick="searchModal()">
+        <i class="fa-solid fa-circle-xmark"></i>
+      </button>
+
+      <div class="modal-content">
+        <h3>Veja o clima de qualquer lugar!</h3>
+        <div class="search-form">
+          <input type="search" id="cidade" placeholder="Digite o nome da cidade">
+          <button onclick="searchWeather()">Buscar</button>
+        </div>
       </div>
     </div>
   </main>
