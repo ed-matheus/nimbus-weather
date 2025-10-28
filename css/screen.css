@@ -1,0 +1,159 @@
+/* Tablet (a partir de 426px) */
+@media (min-width: 426px) {
+  main {
+    width: 70%; /* O card fica um pouco mais estreito */
+    max-width: 450px; /* E ganha uma largura máxima! */
+  }
+
+  /* Ajusta o tamanho dos modais */
+  .modal-forecast,
+  .modal-search {
+    width: 70%;
+    max-width: 450px;
+    /* Se os modais não estiverem centralizados, 
+       descomente as 3 linhas abaixo: */
+    /* top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    */
+  }
+}
+
+/* Notebook (a partir de 769px) */
+@media (min-width: 769px) {
+  main {
+    width: 60%;
+    max-width: 500px; /* Um pouco maior para notebooks */
+    /* padding: 30px 30px 0px 30px; */
+  }
+
+  /* --- Vamos aumentar as fontes --- */
+  main h1 {
+    font-size: 1.4rem;
+  }
+
+  .temperature-container {
+    width: 120px;
+    height: 120px;
+  }
+
+  .temperature {
+    font-size: 3.2rem;
+  }
+
+  .weather {
+    font-size: 1.15rem;
+  }
+
+  .city {
+    font-size: 0.9rem;
+  }
+
+  .extra-info span {
+    font-size: 1rem;
+  }
+
+  .more-options {
+    width: 100%;
+  }
+
+  .search {
+    width: 65px;
+    height: 65px;
+  }
+
+  /* --- Ajustes nos modais --- */
+  .modal-forecast,
+  .modal-search {
+    width: 60%;
+    max-width: 480px;
+  }
+
+  .search-form input {
+    width: 300px;
+  }
+}
+
+/* Telas maiores (a partir de 1025px) */
+@media (min-width: 1025px) {
+  main {
+    width: 50%;
+    max-width: 550px; /* Um tamanho final elegante */
+    padding: 30px 30px 0px 30px;
+  }
+
+  /* --- Aumenta mais as fontes --- */
+  main h1 {
+    font-size: 1.6rem;
+    margin-bottom: 50px;
+  }
+
+  .temperature-container {
+    width: 140px;
+    height: 140px;
+    border-width: 7px;
+  }
+
+  .temperature {
+    font-size: 4rem;
+  }
+
+  .city-info {
+    margin-top: 50px;
+    margin-bottom: 60px;
+  }
+
+  .weather {
+    font-size: 1.3rem;
+  }
+
+  .city {
+    font-size: 1rem;
+  }
+
+  .extra-info {
+    gap: 25px;
+    margin-bottom: 20px;
+  }
+
+  .extra-info span {
+    font-size: 1rem;
+  }
+
+  .more-options {
+    padding: 35px 30px;
+    width: 100%;
+  }
+
+  .search {
+    width: 70px;
+    height: 70px;
+  }
+
+  /* --- Ajustes finais nos modais --- */
+  .modal-forecast,
+  .modal-search {
+    width: 500px; /* Largura fixa para conforto */
+  }
+
+  .search-form input {
+    width: 350px;
+    font-size: 1rem;
+  }
+}
+
+/* Telas muito grandes (só um refinamento) */
+@media (min-width: 1441px) {
+  main {
+    max-width: 580px; /* Um pouquinho mais de espaço */
+  }
+
+  .temperature-container {
+    width: 150px;
+    height: 150px;
+  }
+
+  .temperature {
+    font-size: 4.2rem;
+  }
+}
