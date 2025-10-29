@@ -128,8 +128,13 @@ const screenUpdate = (data) => {
 
 // Função para abrir/fechar o modal de previsão do tempo
 const forecastModal = () => {
+  // Se estiver aberto, fecha, e vice-versa
   const modal = document.querySelector(".modal-forecast")
   modal.classList.toggle('is-visible')
+
+  // Se o modal de pesquisa estiver aberto, fecha
+  const modalSearch = document.querySelector(".modal-search")
+  modalSearch.classList.remove('is-visible')
 }
 
 // Buscando dados de previsão da API
@@ -210,8 +215,13 @@ const modalUpdate = (dailyForecast) => {
 
 // Função para abrir o modal "Weather"
 const searchModal = () => {
+  // Se estiver aberto, fecha, e vice-versa
   const modal = document.querySelector(".modal-search")
   modal.classList.toggle('is-visible')
+
+  // Se o modal de previsão estiver aberto, fecha
+  const modalForecast = document.querySelector(".modal-forecast")
+  modalForecast.classList.remove('is-visible')
 }
 
 // Função para buscar dados da cidade inserida no modal de pesquisa
@@ -220,6 +230,10 @@ const searchWeather = () => {
   console.log(userSearch)
 
   coordsByCityName(userSearch)
+
+  // O modal fecha após a pesquisa da cidade
+  const modalSearch = document.querySelector(".modal-search")
+  modalSearch.classList.remove('is-visible')
 }
 
 const coordsByCityName = async (userSearch) => {
